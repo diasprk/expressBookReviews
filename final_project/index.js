@@ -33,6 +33,7 @@ const PORT =5000;
 app.use("/customer", customer_routes);
 app.use("/", genl_routes);
 
+//Get all book using async callback function
 app.get("/axios_book_list", async (req, res) => {
     try {
       const response = await axios.get('http://localhost:5000');
@@ -42,6 +43,7 @@ app.get("/axios_book_list", async (req, res) => {
     }
 });
 
+//Search by ISBN – Using Promises
 app.get("/axios_search_by_isbn/:isbn", function (req, res) {
     axios.get("http://localhost:5000/isbn/"+req.params.isbn)
     .then(function (response) {
@@ -52,6 +54,7 @@ app.get("/axios_search_by_isbn/:isbn", function (req, res) {
     });
 });
 
+//Search by Author
 app.get("/axios_search_by_author/:author", function (req, res) {
     axios.get("http://localhost:5000/author/"+req.params.author)
     .then(function (response) {
@@ -62,6 +65,7 @@ app.get("/axios_search_by_author/:author", function (req, res) {
     });
 });
 
+//Search by title
 app.get("/axios_search_by_title/:title", function (req, res) {
     axios.get("http://localhost:5000/title/"+req.params.title)
     .then(function (response) {
